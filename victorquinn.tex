@@ -1,215 +1,228 @@
-% resume.tex
-% vim:set ft=tex spell:
-
-\documentclass[10pt,letterpaper]{article}
-\usepackage[letterpaper,margin=0.75in]{geometry}
+%!TEX TS-program = xelatex
+\documentclass[]{friggeri-cv}
+\usepackage{afterpage}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{smartdiagram}
+\usepackage{fontspec}
+% if you want to add fontawesome package
+% you need to compile the tex file with LuaLaTeX
+% References:
+%   http://texdoc.net/texmf-dist/doc/latex/fontawesome/fontawesome.pdf
+%   https://www.ctan.org/tex-archive/fonts/fontawesome?lang=en
+%\usepackage{fontawesome}
+\usepackage{metalogo}
+\usepackage{dtklogos}
 \usepackage[utf8]{inputenc}
-\usepackage{mdwlist}
-\usepackage[T1]{fontenc}
-\usepackage{textcomp}
-\pagestyle{empty}
-\setlength{\tabcolsep}{0em}
-
-% indentsection style, used for sections that aren't already in lists
-% that need indentation to the level of all text in the document
-\newenvironment{indentsection}[1]%
-{\begin{list}{}%
-	{\setlength{\leftmargin}{#1}}%
-	\item[]%
+\usepackage{tikz}
+\usetikzlibrary{mindmap,shadows}
+\hypersetup{
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    colorlinks=false,           % no lik border color
+    allbordercolors=white       % white border color for all
 }
-{\end{list}}
-
-% opposite of above; bump a section back toward the left margin
-\newenvironment{unindentsection}[1]%
-{\begin{list}{}%
-	{\setlength{\leftmargin}{-0.5#1}}%
-	\item[]%
+\smartdiagramset{
+    bubble center node font = \footnotesize,
+    bubble node font = \footnotesize,
+    % specifies the minimum size of the bubble center node
+    bubble center node size = 0.5cm,
+    %  specifies the minimum size of the bubbles
+    bubble node size = 0.5cm,
+    % specifies which is the distance among the bubble center node and the other bubbles
+    distance center/other bubbles = 0.3cm,
+    % sets the distance from the text to the border of the bubble center node
+    distance text center bubble = 0.5cm,
+    % set center bubble color
+    bubble center node color = pblue,
+    % define the list of colors usable in the diagram
+    set color list = {lightgray, materialcyan, orange, green, materialorange, materialteal, materialamber, materialindigo, materialgreen, materiallime},
+    % sets the opacity at which the bubbles are shown
+    bubble fill opacity = 0.6,
+    % sets the opacity at which the bubble text is shown
+    bubble text opacity = 0.5,
 }
-{\end{list}}
 
-% format two pieces of text, one left aligned and one right aligned
-\newcommand{\headerrow}[2]
-{\begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
-	#1 &
-	#2 \\
-\end{tabular*}}
+\addbibresource{bibliography.bib}
+\RequirePackage{xcolor}
+\definecolor{pblue}{HTML}{0395DE}
 
-% make "C++" look pretty when used in text by touching up the plus signs
-\newcommand{\CPP}
-{C\nolinebreak[4]\hspace{-.05em}\raisebox{.22ex}{\footnotesize\bf ++}}
-
-% and the actual content starts here
 \begin{document}
+\header{Victor}{Quinn}
+      {Software Engineer and Technical Leader}
+      
+% Fake text to add separator      
+\fcolorbox{white}{gray}{\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule}{%
+.....
+}}
 
-\begin{center}
-{\Huge \textbf{Victor Quinn}}
-\vspace{.8em}
-
-1616 Sunstone Dr \ \ {$\cdot$}
-\ \ McLean, Virginia 22102
+% In the aside, each new line forces a line break
+\begin{aside}
+  \includegraphics[scale=0.55]{img/HeadshotCircle.png}
+  \section{Address}
+    2727 S Quincy St
+    Apt 1215
+    Arlington, VA 22206
+    ~
+  \section{Tel}
+    (413) 687-2928
+    ~
+  \section{Mail}
+    \href{mailto:mail@victorquinn.com}{{mail@victorquinn.com}}
+    ~
+  \section{Web \& Git}
+    \href{https://www.victorquinn.com}{www.victorquinn.com}
+    \href{https://github.com/victorquinn}{github.com/victorquinn}
+    ~
+  % use  \hspace{} or \vspace{} to change bubble size, if needed
+  \section{Programming}
+    \smartdiagram[bubble diagram]{
+        \textbf{Node},
+        \textbf{JavaScript},
+        \textbf{HTML}\\\textbf{CSS},
+        \textbf{React}\\\textbf{Angular},
+        \textbf{Other\vspace{1mm}},
+        \textbf{Go\vspace{1mm}},
+        \textbf{Python},
+        \textbf{iOS}\\\textbf{Android},
+        \textbf{Bash}
+    }
+    ~
+  \section{Personal Skills}
+    \smartdiagram[bubble diagram]{
+        \textbf{Team}\\\textbf{Player},
+        \textbf{Initiative},
+        \textbf{Curiosity},
+        \textbf{Problem}\\\textbf{Solving},
+        \textbf{Leadership},
+        \textbf{Organize}
+    }
+    ~
+\end{aside}
+~
+\section{Experience}
+\begin{entrylist}
+  \entry
+    {09/13 - Now}
+    {VP of Engineering}
+    {SocialRadar}
+    {Leading the engineering team at SocialRadar, a startup specializing in location technologies. Architecting systems and ensuring applications are built to scale. Managing engineers by building out the team, working to keep morale and retention up, maintaining a positive engineering culture, providing technical guidance, acting as a mentor and advocate, and leading by example. Polyglot coder, committing code to anything needing attention on the front end, back end, or ops. Led team through multiple pivots.\\}
+  \entry
+    {03/12 - 09/13}
+    {Senior Software Engineer}
+    {NGP VAN}
+    {Led an engineering team to revamp the process by which the company took and processed contributions for political campaigns. Spearheaded a rewrite of the core API for taking monetary contributions and the dynamic client-side form generation. This resulted in forms that were more extensible, better looking, and auto-filling which led to significantly increased conversion rates.\\}
+    \entry
+    {08/08 - 03/12}
+    {Web Programmer}
+    {Amherst College}
+    {Collaborated with a team to create custom tools to empower faculty and staff to create rich education content. Primarily focused on the full stack of media uploads, from UI to storage, my work resulted in making it easier for educators to create content, students to upload files, and educators to review them.\\}
+    \entry
+    {07/05 - 08/08}
+    {Senior Developer}
+    {University of Massachusetts Amherst}
+    {Specialized in software design and programming for internal processes including web development, custom Windows application development, and other various scripting. Each project I developed helped automate some processes and liberate others from antiquated systems such as moving from an emailed MS Access file to a true database application.}
+\end{entrylist}
 \\
-(703) 962-7234\ \ {$\cdot$}
-\ \ mail@victorquinn.com
-\end{center}
+\section{Education}
+\begin{entrylist}
+  \entry
+    {2007 - 2011}
+    {Juris Doctor}
+    {Western New England University School of Law}
+    {Attended part-time at night while working full-time as a programmer during the day. Elected President of the IP Law Association. Maintained a course concentration in Intellectual Property Law including an Independent Study in Patent Litigation. Awarded two Excellence for the Future Awards for the Highest Achievement in Analytical Methods for Lawyers and Trademark Law.\\}
+  \entry
+    {2001 - 2006}
+    {Bachelor's Degree in Computer Science}
+    {University of Massachusetts Amherst}
+    {Member of the CS Talent Advancement Program and a Computer Science program Mentor. Advised and aided younger CS majors.\\}
+  \entry
+    {2001 - 2006}
+    {Bachelor's Degree in Physics}
+    {University of Massachusetts Amherst}
+    {Completed alongside Computer Science degree. Focused on optics and theoretical physics.}
+\end{entrylist}
 
-\begin{center}
-\hrule
-\vspace{-0.4em}
-\subsection*{Experience}
-\end{center}
+\newpage
 
-\begin{itemize}
-	\parskip=0.1em
-	\item[]
-	\headerrow
-		{\textbf{NGP VAN}}
-		{\textbf{Washington, D.C.}}
-	\\
-	\headerrow
-		{\emph{Senior Software Engineer}}
-		{\emph{March 2012 -- Present}}
-	\begin{itemize*}
-		\item Architecting and writing applications in Node.js with MongoDB or DynamoDB backends. Building and documenting RESTful APIs for these apps, and having each app consume the APIs of the others and of other core systems within our company to build out a very powerful network of systems to handle interactions with the public. 
-		\item These applications have been deployed at very large-scale across NGP VAN's large client-base and some stood up to the high stakes/high load environment of the 2012 election across presidential, senate, and smaller races.
-		\item These apps are used for tracking user interactions with our public facing products, for accepting data, for processing payments for contributions, and performing analytics. 
-		\item Currently leading an agile team (3 Developers, 1 Product Manager, and 1 Quality Assurance) to architect and implement these apps in a scrum environment using Jira.
-		\item Led projects with a team split, half in Boston, half in D.C. to greatly simplify API interactions, to move mechanics client-side where feasible using Backbone and Angular for greater separation of concerns, better, more snappy user experience, to move the team toward test driven development, and to centrally integrate multiple core internal backend systems
-		\item Latest accomplishment was leading a rewrite of our system for taking contributions, moving from very server-side heavy code to a powerful client-side single page app with rich interactions to process payments contributions and other CRM data which talks directly to a new REST API I architected onto the company's core financial database.
-	\end{itemize*}
+\begin{aside}
+~
+~
+~
+  \section{Places Lived}
+    \includegraphics[scale=0.25]{img/PlacesLived.png}
+    ~
+  \section{Frontend Framework Preference}
+    \textbf{React}\includegraphics[scale=0.40]{img/5stars.png}
+    \textbf{Angular}\includegraphics[scale=0.40]{img/4stars.png}
+    \textbf{Ember}\includegraphics[scale=0.40]{img/3stars.png}
+    ~
+  \section{My Bike}
+    \includegraphics[scale=0.05]{img/HarleyCropped.jpg}
+    {Yes my license plate actually is \textit{Emacs}}
+    ~
+   \section{Backend Language Preference}
+    \textbf{Node.js}\includegraphics[scale=0.40]{img/5stars.png}
+    \textbf{Go}\includegraphics[scale=0.40]{img/4stars.png}
+    \textbf{Rust}\includegraphics[scale=0.40]{img/4stars.png}
+    \textbf{Python}\includegraphics[scale=0.40]{img/3stars.png}
+    \textbf{Ruby}\includegraphics[scale=0.40]{img/2stars.png}
+    ~
+\end{aside}
 
-	\item[]
-	\headerrow
-		{\textbf{Amherst College}}
-		{\textbf{Amherst, MA}}
-	\\
-	\headerrow
-		{\emph{Web Programmer}}
-		{\emph{2008 -- March 2012}}
-	\begin{itemize*}
-		\item Specialized in web development in PHP and JavaScript on a Drupal stack, tying into a MySQL database
-		\item Collaborated with a team of developers to create custom tools in order to allow faculty and staff to create rich content for education
-		\item As the User Interface expert on the team, focused on maximizing ease of use through interface design
-		\item Nature of the job required knowledge of the entire IT stack including servers, redundant backups, databases, storage solutions, uptime monitoring, and technologies like Apache and Linux server administration
-	\end{itemize*}
+\section{Publications}
+\textbf{\href{http://gettingstartedwithtmux.com/}{Getting Started with tmux}}\\
+{I authored this technical book to help developers make use of one of my favorite command line tools. Published by Packt Publishing, this easy and approachable getting started guide is a great point of entry for developers looking to maximize their terminal usage. However, it also has enough depth that it is helpful for more adept tmux users as well.}
+\\
+\section{Open Source}
+\begin{entrylist}
+  \entry
+  {06/2013}
+  {\href{http://chancejs.com}{Chance}}
+  {Creator}
+  {Chance is a random generator helper for JavaScript. I wrote it out of frustration for lack of libraries like it. Now approaching 2000 stars on Github, it was spun off to its own organization and has been forked over 160 times.}
+  \entry
+  {08/2013}
+  {\href{http://dynastyjs.com}{Dynasty}}
+  {Creator}
+  {Promise-based DynamoDB client with a focus on simplicity. I wrote this after being unsatisfied with the core AWS library due to its use of traditional Node callbacks and confusing API.}
+  \entry
+  {11/2013}
+  {\href{http://batch-request.socialradar.com}{Batch Request}}
+  {Creator}
+  {Lightweight connect/express middleware for Node.js which allows clients to send multiple requests to a server running Node.js in batch. Clients can send a single request that represents many, have them all run, then return a single response.}
+  \entry
+  {06/2014}
+  {\href{http://memcache-plus.com/}{Memcache Plus}}
+  {Creator}
+  {A better Memcache client for Node.js featuring Promises, baked in support for Elasticache Auto Discovery, command buffering, per-key compression, and more. I wrote this as I was unsatisfied with the other existing Memcache clients.}
+\end{entrylist}
 
-	\item[]
-	\headerrow
-		{\textbf{University of Massachusetts Amherst}}
-		{\textbf{Amherst, MA}}
-	\\
-	\headerrow
-		{\emph{Senior Developer and Backup Systems Administrator}}
-		{\emph{2005 -- 2008}}
-	\begin{itemize*}
-		\item Specialized in software design for internal processes including, but not limited to, web development, custom Windows application development, and other various scripting
-		\item As the Backup Systems Administrator, gained extensive knowledge on the entire server architecture
-	\end{itemize*}
-
-\end{itemize}
-
-\begin{center}
-\hrule
-\vspace{-0.4em}
-\subsection*{Education}
-\end{center}
-
-\begin{itemize}
-	\parskip=0.1em
-
-	\item[]
-	\headerrow
-		{\textbf{Western New England University}}
-		{\textbf{Springfield, MA}}
-	\\
-	\headerrow
-		{\emph{School of Law, Juris Doctor Degree}}
-		{\emph{2007 -- 2011}}
-	\begin{itemize*}
-		\item Attended part-time at night while working full-time as a computer programmer during the day
-		\item As President of the Intellectual Property Law Association, organized multiple IP awareness events
-		\item Course concentration in Intellectual Property Law including an Independent Study in Patent Litigation
-		\item Awarded two CALI Excellence for the Future Awards for the Highest Achievement in Analytical Methods for Lawyers and Trademark Law
-	\end{itemize*}
-
-	\item[]
-	\headerrow
-		{\textbf{University of Massachusetts Amherst}}
-		{\textbf{Amherst, MA}}
-	\\
-	\headerrow
-		{\emph{College of Natural Sciences and Mathematics, B.S. Physics and B.S. Computer Science}}
-		{\emph{2001 -- 2006}}
-	\begin{itemize*}
-		\item Completed Double Bachelor of Science Degree Program
-		\item Served as a New Students Program counselor, helping ease student transition to the University and as a leader for the wilderness orientation program
-		\item Member of the Computer Science Talent Advancement Program
-		\item Computer Science Mentor
-	\end{itemize*}
-\end{itemize}
-
-\begin{center}
-\hrule
-\subsection*{Programming Skills}
-\end{center}
-
-\begin{indentsection}{\parindent}
-\hyphenpenalty=1000
-\begin{description*}
-	\item[Infrastructures:]
-	Expert knowledge of computers, including full IT backend. More than five years experience as a Linux systems admin.
-	\item[Computer Language Skills:]
-	Expert in JavaScript and PHP, capable in \LaTeX, Perl, Python, Ruby, Objective-C (iOS), shell scripts, SQL, Lisp, etc.
-	\item[CMS and Framework Experience:]
-	Guru level familiarity with Drupal, some experience with other open-source CMS's such as Joomla, WordPress. Lot of experience with Express, some experience with other web frameworks like Django, Ruby on Rails, Sinatra, and Meteor. Personal website (http://victorquinn.com) is created using OctoPress.
-	\item[SaaS/PaaS Experience:]
-	Lot of experience using hosted services for developing and hosting large scale apps. SaaS experience includes setup/management/configuration of Google Apps, FastMail, GitHub, Hipchat, Jira, Trello, and others. For deploying large scale apps, experience includes Linode, Heroku, Amazon AWS assets (S3, DynamoDB, CloudFront, Route53, EC2, RDS, Glacier, and more), MailChimp and Mandrill.
-	\item[Version Control:]
-	Expert in git, have worked with subversion as well. Have given training courses on git to multiple groups.
-\end{description*}
-\end{indentsection}
-
-\begin{center}
-\hrule
-\vspace{-0.4em}
-\subsection*{Open Source Projects}
-\end{center}
-
-\begin{indentsection}{\parindent}
-\hyphenpenalty=1000
-\begin{description*}
-	\item[Chance:]
-	Created this library to help generate random things in JavaScript. Useful for the browser or Node.js for automated tests, stub data, etc. Gained more than 250 stars in less than a month on GitHub. http://chancejs.com
-	\item[Backbone.CrossDomain:]
-         Created this plugin which is an AMD compatible drop-in replacement for Backbone's core sync function which extends it to allow CORS requests in IE7/8/9 which Backbone does not support out of the box for cross domain requests. https://github.com/victorquinn/Backbone.CrossDomain
-	\item[Ubercart Stripe Module:]
-	 Developed a module for Drupal's most popular e-commerce system using the Stripe payment processor. Their API was a dream to work with. http://drupal.org/project/uc\_stripe
-	\item[DuckDuckGo Safari Extension:]
-	I enjoyed using DuckDuckGo, a search engine which is positioning itself as a more privacy-friendly alternative to Google, so when Apple first released its Extensions for Safari, I jumped at the opportunity to write this Extension.  https://extensions.apple.com
-	\item[Alfred Volume Extension:]
-	Alfred is one of my must-haves and is used to control almost everything on my system, but one thing it didn't do was control my volume -- so I set forth to change that by developing the Alfred Volume Extension. https://gist.github.com/1794961
-	\item[Theme Hider:]
-	Starting from a base and solving a seemingly simple problem in Drupal that heretofore went without a solution, I wrote a Drupal module to allow an admin user to selectively hide themes from other users. http://drupal.org/project/theme\_hider
-	\item[Monster Menus:]
-	A project begun by Amherst College to deal with inadequacies in granular permissions in Drupal, I have made substantial contributions to this now open source project, both during my tenure at Amherst and after. http://drupal.org/project/monster\_menus
-\end{description*}
-\end{indentsection}
-
-\begin{center}
-\hrule
-\vspace{-0.4em}
-\subsection*{Miscellaneous}
-\end{center}
-
-\begin{indentsection}{\parindent}
-\hyphenpenalty=1000
-\begin{description*}
-	\item[U.S. Patent and Trademark Office:]
-	Registered Patent Agent -- Registration Number: 69321
-	\item[Other:]
-	Avid outdoorsman and traveler. Motorcyclist who commutes daily on a Harley-Davidson. Hobbies include tinkering with emerging web technologies, video editing, graphic design, homebrew, and the art of letterpress. Achieved the rank of Eagle Scout on January, 2000.
-	\item[Reading List:]
-	HackerNews, DailyJS, Echo JS, TheVerge, Marco.org, DaringFireball, Alex Maccaw's Blog
-\end{description*}
-\end{indentsection}
+\section{Other Achievements}
+\begin{entrylist}
+    \entry
+    {01/2012}
+    {Registered Patent Agent}
+    {}
+    {US Patent and Trademark Office Agent \#69321}
+    \entry
+    {01/2000}
+    {Eagle Scout}
+    {}
+    {The highest rank in the Boy Scouts of America, achieved by only 4\% of scouts.}
+\end{entrylist}
+\\
+\section{About Me}
+I type with the Dvorak keyboard layout on a Kinesis Advantage keyboard while using Emacs as my primary tool to write code. I remap Control to Caps Lock to help me fly and I'm an efficiency junkie who is always looking for ways to improve my workflow. I'm passionate about a great many things in the world of computing, but a few of my favorites are databases, architecture, and clean API design. I currently live in the Washington, D.C. metro area with my wife and Great Dane where I enjoy writing fiction, brewing my own beer, and riding my Harley.
+\\
+\begin{flushleft}
+\emph{August 7, 2016}
+\end{flushleft}
+\begin{flushright}
+\emph{Victor Quinn}
+\end{flushright}
 
 \end{document}
